@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="school">
+        {% if school.created_date %}
+            <div class="date">
+                {{ school.created_date }}
+            </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+        <h1>{{ school.name }}</h1>
+        <p>{{ school.description|linebreaksbr }}</p>
+        <p>{{ school.rating|linebreaksbr }}</p>
+        <p>{{ school.laungagues|linebreaksbr }}</p>
+    </div>
+{% endblock %}

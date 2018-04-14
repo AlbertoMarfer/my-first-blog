@@ -32,7 +32,6 @@ class School(models.Model):
     description = models.TextField()
     rating = models.DecimalField(max_digits=6, decimal_places=4)
     laungagues = models.CharField(max_length=2, choices=LANGUAGES_CHOICES)
-    address = models.CharField(max_length=200)
     created_date = models.DateTimeField(
             default=timezone.now)
     updated_date = models.DateTimeField(

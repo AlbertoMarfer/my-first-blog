@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="school">
+        {% if user.is_authenticated %}
+             <a class="btn btn-default" href="{% url 'school_edit' pk=school.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+        <h1>{{ school.name }}</h1>
+        <p>{{ school.description|linebreaksbr }}</p>
+        <p>{{ school.rating|linebreaksbr }}</p>
+        <p>{{ school.laungagues|linebreaksbr }}</p>
+        <p>{{ school.address|linebreaksbr }}</p>
+    </div>
+{% endblock %}

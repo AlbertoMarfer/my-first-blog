@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for school in schools %}
+        <div class="school">
+            <h1><a href="{% url 'school_detail' pk=school.pk %}">{{ school.name }}</a></h1>
+            <p>{{ school.description|linebreaksbr }}</p>
+            <p>{{ school.rating|linebreaksbr }}</p>
+            <p>{{ school.laungagues|linebreaksbr }}</p>
+            <p>{{ school.address|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

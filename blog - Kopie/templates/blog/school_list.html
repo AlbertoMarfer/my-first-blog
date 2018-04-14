@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for school in schools %}
+        <div class="school">
+            <div class="date">
+                {{ school.created_date }}
+            </div>
+            <h1><a href="{% url 'school_detail' pk=school.pk %}">{{ school.title }}</a></h1>
+            <p>{{ school.name|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -8,7 +8,7 @@ class PostSchool(forms.ModelForm):
 
     class Meta:
         model = School
-        fields = ('name', 'description', 'rating', 'laungagues', 'address',)
+        fields = ('name', 'description', 'rating', 'laungagues',)
         
 #class PostForm(forms.ModelForm):
 #
