@@ -1,13 +1,31 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+        <form class="search" type="get" action="." style="margin: 0">
+            <input  id="school_name" type="text" name="school_name"  placeholder="Name" >
+            <input  id="rating" type="range" min="0" max="10" step="0.01" name="rating"  list="tickmarks" >
+                <datalist id="tickmarks">
+                  <option value="0" label="0">
+                  <option value="1">
+                  <option value="2">
+                  <option value="3">
+                  <option value="4">
+                  <option value="5" label="5">
+                  <option value="6">
+                  <option value="7">
+                  <option value="8">
+                  <option value="9">
+                  <option value="10" label="10">
+                </datalist>
+            <button id="search_submit" type="submit" >Submit</button>
+        </form>
     {% for school in schools %}
         <div class="school">
             <h1><a href="{% url 'school_detail' pk=school.pk %}">{{ school.name }}</a></h1>
-            <p>{{ school.description|linebreaksbr }}</p>
-            <p>{{ school.rating|linebreaksbr }}</p>
-            <p>{{ school.laungagues|linebreaksbr }}</p>
-            <p>{{ school.address|linebreaksbr }}</p>
+            <p>Description:{{ school.description|linebreaksbr }}</p>
+            <p>Rating: {{ school.rating|linebreaksbr }}</p>
+            <p>Language: {{ school.laungagues|linebreaksbr }}</p>
+            <p>Address: {{ school.address|linebreaksbr }}</p>
         </div>
     {% endfor %}
 {% endblock %}

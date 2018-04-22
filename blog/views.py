@@ -59,7 +59,7 @@ def school_new(request):
 def school_edit(request, pk):
     school = get_object_or_404(School, pk=pk)
     if request.method == "POST":
-        form = PostSchool(request.POST)
+        form = PostSchool(request.POST, instance=school)
         if form.is_valid():
             school = form.save(commit=False)
             school.created_date = timezone.now()
@@ -71,9 +71,12 @@ def school_edit(request, pk):
 
 
 def school_list(request):
-    if request.method == "GET":
-        search_query = request.GET.get('search_box', None)
-        schools = School.objects.filter(name=search_query)
+    if request.method == "GET" and request.GET.get('rating', None) != None:
+        name_query = request.GET.get('school_name', None)
+        rating_query = request.GET.get('rating', None)
+        schools = School.objects.filter(name__contains=name_query).filter(rating__gte=rating_query)
+        if len(schools) == 0:
+            schools = School.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
     else:
         schools = School.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
     return render(request, 'blog/school_list.html', {'schools': schools})
